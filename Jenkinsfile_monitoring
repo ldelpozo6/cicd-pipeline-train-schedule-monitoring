@@ -1,13 +1,14 @@
 node {
         def DOCKER_IMAGE_NAME="ldelpozo/train-schedule"
+        stage('Clone Repo') {
+                git branch: 'master',
+                credentialsId: 'githhub_api_key',
+                url: 'https://github.com/ldelpozo6/cicd-pipeline-train-schedule-monitoring.git'
+        }
         stage('Build') {
-          dir("${WORKSPACE}") {
                 echo 'Running build automation'
-                sh 'pwd'
-                sh 'ls -l'
                 sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
-          }
         }
         stage('Build Docker Image') {
             if (env.BRANCH_NAME == 'master') {
