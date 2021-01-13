@@ -2,7 +2,7 @@ node {
         def DOCKER_IMAGE_NAME="ldelpozo/train-schedule"
         stage('Build') {
                 echo 'Running build automation'
-                sh './gradlew build --no-daemon'
+                sh '${WORKSPACE}/gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
         }
         stage('Build Docker Image') {
