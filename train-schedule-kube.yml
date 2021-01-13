@@ -35,4 +35,4 @@ spec:
       - name: train-schedule
         image: linuxacademycontent/train-schedule:1
         ports:
-        - containerPort: 8080
+        - containerPort: 8081
